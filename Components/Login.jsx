@@ -10,7 +10,7 @@ import {
 	TouchableOpacity,
 } from "react-native";
 //data
-import userlog from "./dumby";
+import userlog from "../data/dumby";
 const userdat = userlog;
 
 export default function Login() {
