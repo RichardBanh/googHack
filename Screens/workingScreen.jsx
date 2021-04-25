@@ -6,38 +6,27 @@ import {
 	Image,
 	SafeAreaView,
 	TouchableOpacity,
-	ImageBackground,
 	ScrollView,
 } from "react-native";
 import DetailOpenModal from "./openDetailModal";
 import { useSelector, useDispatch } from "react-redux";
 
-//dumbie data
-
-import { INSTAPOST, BRAND } from "../data/dumby.js";
+import { INSTAPOST, BRAND, TWIT } from "../data/dumby.js";
 
 import { InstagramPosts } from "../Components/InstagramPost";
-//should work on mapping to picker
-//how to find brandlogo to?
-// const newArraywithbrandURI = (arr1, arr2) => {
-// 	for (i = 0; i < arr1.length; i++) {
-// 		const brandk = arr1[i].brand;
-// 		const matchingobj = arr2.find(({ brand }) => brand === brandk);
-// 		const brandURI = matchingobj.branduri;
-// 		arr1[i].branduri = brandURI;
-// 	}
-// 	return arr1;
-// };
+
+import { TwitterPosts } from "../Components/TwitterPost";
 
 const Working = () => {
 	const [currentSelected, setselected] = useState("all");
 	const [data, setData] = useState([]);
+	const [twitdata, setTData] = useState([]);
 	//Modal must stay in workingScreen
 	const modalOpened = useSelector((state) => state.modalOpen.modalOpen);
 	const sendRedux = useDispatch();
 
 	useEffect(() => {
-		async function newArraywithbrandURI(arr1, arr2) {
+		async function instaArraywithbrandURI(arr1, arr2) {
 			for (i = 0; i < arr1.length; i++) {
 				const brandk = arr1[i].brand;
 				const matchingobj = arr2.find(({ brand }) => brand === brandk);
@@ -46,28 +35,31 @@ const Working = () => {
 			}
 			setData([...arr1]);
 		}
-		newArraywithbrandURI(INSTAPOST, BRAND);
-	}, []);
-	const combineDataDisplay = data.map(
-		(x) => {
-			// let props = { uri: obj.uri, brandURI: obj.branduri, brand: obj.brand };
-			let props = { uri: x.uri, brandURI: x.branduri, brand: x.brand };
-			// return <InstagramPosts {...props} />;
-			return <InstagramPosts {...props} />;
+		async function twitArraywithbrandURI(arr1, arr2) {
+			for (i = 0; i < arr1.length; i++) {
+				const brandk = arr1[i].brand;
+				const matchingobj = arr2.find(({ brand }) => brand === brandk);
+				const brandURI = matchingobj.branduri;
+				arr1[i].branduri = brandURI;
+			}
+			setTData([...arr1]);
 		}
+		instaArraywithbrandURI(INSTAPOST, BRAND);
+		twitArraywithbrandURI(TWIT, BRAND);
+	}, []);
 
-		// combined.map((x) => {
-		//
-		// 	return <InstagramPosts {...props} />;
-		// });
-
-		// return component;
-		// combined = combined.map(({ brandURI, brand, postID, shared, uri }) => {
-		// 	// <InstagramPosts props={(brandURI, brand, postID, shared, uri)} />
-		// 	console.log(brandURI, )
-		// });
-	);
-
+	const combineDataDisplayInsta = data.map((x) => {
+		let props = { uri: x.uri, brandURI: x.branduri, brand: x.brand };
+		return <InstagramPosts {...props} key={Math.random()} />;
+	});
+	const combineDataDisplayTwit = twitdata.map((x) => {
+		let props = {
+			brandURI: x.branduri,
+			text: x.text,
+			brand: x.brand,
+		};
+		return <TwitterPosts {...props} key={Math.random()} />;
+	});
 	return (
 		<SafeAreaView>
 			{modalOpened ? <DetailOpenModal /> : <Text></Text>}
@@ -123,36 +115,10 @@ const Working = () => {
 				</View>
 			</View>
 			<ScrollView>
-				<View style={styles.instaBl}>
-					{/* {data.length === 0 ? <Text></Text> : combineDataDisplay} */}
-					{combineDataDisplay}
-				</View>
+				<View style={styles.instaBl}>{combineDataDisplayInsta}</View>
 
 				{/* twitter block */}
-				<View style={styles.twittBl}>
-					{/* single post */}
-					<View style={styles.twit}>
-						<View style={styles.iconblkspread}>
-							<View style={styles.iconblkTwit}>
-								<Image
-									source={require("./images/twitter.png")}
-									style={styles.buttonImg}
-								/>
-								<Text> Red Cross</Text>
-							</View>
-							<TouchableOpacity>
-								<Image
-									style={styles.buttonImgS}
-									source={require("./images/arrow-up-right.png")}
-								/>
-							</TouchableOpacity>
-						</View>
-						<Text>
-							aksjdhfikajhsdkfjhakjsdhgfklajhsdkjghaosidfhgoiuhabsdkjhfkj
-						</Text>
-						<Text>#hashtag</Text>
-					</View>
-				</View>
+				<View style={styles.twittBl}>{combineDataDisplayTwit}</View>
 				<View style={styles.faceBl}>
 					{/* single post */}
 					<View style={styles.face}>

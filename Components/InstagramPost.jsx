@@ -10,9 +10,7 @@ import {
 
 export const InstagramPosts = (props) => {
 	//query for posts load database then data image pull
-	console.log(props);
 	// const sendRedux = useDispatch();
-	console.log(props.uri);
 
 	return (
 		<View style={styles.insta}>
