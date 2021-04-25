@@ -11,21 +11,32 @@ import {
 import DetailOpenModal from "./openDetailModal";
 import { useSelector, useDispatch } from "react-redux";
 
-import { INSTAPOST, BRAND, TWIT } from "../data/dumby.js";
+import { INSTAPOST, BRAND, TWIT, FACE } from "../data/dumby.js";
 
 import { InstagramPosts } from "../Components/InstagramPost";
 
 import { TwitterPosts } from "../Components/TwitterPost";
 
+import { FacebookPost } from "../Components/FacebookPost";
 const Working = () => {
 	const [currentSelected, setselected] = useState("all");
 	const [data, setData] = useState([]);
 	const [twitdata, setTData] = useState([]);
+	const [facedata, setFace] = useState([]);
 	//Modal must stay in workingScreen
 	const modalOpened = useSelector((state) => state.modalOpen.modalOpen);
 	const sendRedux = useDispatch();
 
 	useEffect(() => {
+		async function faceArraywithbrandURI(arr1, arr2) {
+			for (i = 0; i < arr1.length; i++) {
+				const brandk = arr1[i].brand;
+				const matchingobj = arr2.find(({ brand }) => brand === brandk);
+				const brandURI = matchingobj.branduri;
+				arr1[i].branduri = brandURI;
+			}
+			setFace([...arr1]);
+		}
 		async function instaArraywithbrandURI(arr1, arr2) {
 			for (i = 0; i < arr1.length; i++) {
 				const brandk = arr1[i].brand;
@@ -44,6 +55,7 @@ const Working = () => {
 			}
 			setTData([...arr1]);
 		}
+		faceArraywithbrandURI(FACE, BRAND);
 		instaArraywithbrandURI(INSTAPOST, BRAND);
 		twitArraywithbrandURI(TWIT, BRAND);
 	}, []);
@@ -60,6 +72,16 @@ const Working = () => {
 		};
 		return <TwitterPosts {...props} key={Math.random()} />;
 	});
+	const combineDataDisplayFace = facedata.map((x) => {
+		let props = {
+			brandURI: x.branduri,
+			text: x.text,
+			brand: x.brand,
+			posturi: x.posturi,
+		};
+		return <FacebookPost {...props} key={Math.random()} />;
+	});
+
 	return (
 		<SafeAreaView>
 			{modalOpened ? <DetailOpenModal /> : <Text></Text>}
@@ -119,30 +141,7 @@ const Working = () => {
 
 				{/* twitter block */}
 				<View style={styles.twittBl}>{combineDataDisplayTwit}</View>
-				<View style={styles.faceBl}>
-					{/* single post */}
-					<View style={styles.face}>
-						<View style={styles.iconblkspread}>
-							<View style={styles.iconblkFace}>
-								<Image
-									source={require("./images/facebook.png")}
-									style={styles.buttonImg}
-								/>
-								<Text> Red Cross</Text>
-							</View>
-							<TouchableOpacity>
-								<Image
-									style={styles.buttonImgS}
-									source={require("./images/arrow-up-right.png")}
-								/>
-							</TouchableOpacity>
-						</View>
-						<Text>
-							aksjdhfikajhsdkfjhakjsdhgfklajhsdkjghaosidfhgoiuhabsdkjhfkj
-						</Text>
-						<Text>#hashtag</Text>
-					</View>
-				</View>
+				<View style={styles.faceBl}>{combineDataDisplayFace}</View>
 				<View style={styles.linkBl}>
 					{/* single post */}
 					<View style={styles.link}>
