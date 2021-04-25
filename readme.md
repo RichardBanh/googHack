@@ -11,6 +11,9 @@ Select frequency
 Show already commited
 
 
+Need a section to load all the stuff for the logos and brands...
+should not have all the shit in one place
+
 
 Need to figure out how to call user data from file
 

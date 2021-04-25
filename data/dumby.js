@@ -5,14 +5,15 @@ export const INSTAPOST = [
 		brand: "Red Cross",
 		postID: "12sdf82",
 		uri:
-			"https://en.wikipedia.org/wiki/Breeches_role#/media/File:An-actress-at-her-toilet-or-miss-brazen-just-breecht-john-colley.jpg",
+			"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg",
+		shared: 10000,
 	},
 ];
 
 export const BRAND = [
 	{
 		brand: "Red Cross",
-		uri:
-			"https://en.wikipedia.org/wiki/International_Red_Cross_and_Red_Crescent_Movement#/media/File:IFRC_logo_2020.svg",
+		branduri:
+			"https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg",
 	},
 ];

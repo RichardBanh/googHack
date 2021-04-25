@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -12,15 +12,61 @@ import {
 import DetailOpenModal from "./openDetailModal";
 import { useSelector, useDispatch } from "react-redux";
 
+//dumbie data
 
+import { INSTAPOST, BRAND } from "../data/dumby.js";
+
+import { InstagramPosts } from "../Components/InstagramPost";
 //should work on mapping to picker
+//how to find brandlogo to?
+// const newArraywithbrandURI = (arr1, arr2) => {
+// 	for (i = 0; i < arr1.length; i++) {
+// 		const brandk = arr1[i].brand;
+// 		const matchingobj = arr2.find(({ brand }) => brand === brandk);
+// 		const brandURI = matchingobj.branduri;
+// 		arr1[i].branduri = brandURI;
+// 	}
+// 	return arr1;
+// };
 
 const Working = () => {
 	const [currentSelected, setselected] = useState("all");
+	const [data, setData] = useState([]);
 	//Modal must stay in workingScreen
 	const modalOpened = useSelector((state) => state.modalOpen.modalOpen);
-	const [modalVis, setVis] = useState(false);
 	const sendRedux = useDispatch();
+
+	useEffect(() => {
+		async function newArraywithbrandURI(arr1, arr2) {
+			for (i = 0; i < arr1.length; i++) {
+				const brandk = arr1[i].brand;
+				const matchingobj = arr2.find(({ brand }) => brand === brandk);
+				const brandURI = matchingobj.branduri;
+				arr1[i].branduri = brandURI;
+			}
+			setData([...arr1]);
+		}
+		newArraywithbrandURI(INSTAPOST, BRAND);
+	}, []);
+	const combineDataDisplay = data.map(
+		(x) => {
+			// let props = { uri: obj.uri, brandURI: obj.branduri, brand: obj.brand };
+			let props = { uri: x.uri, brandURI: x.branduri, brand: x.brand };
+			// return <InstagramPosts {...props} />;
+			return <InstagramPosts {...props} />;
+		}
+
+		// combined.map((x) => {
+		//
+		// 	return <InstagramPosts {...props} />;
+		// });
+
+		// return component;
+		// combined = combined.map(({ brandURI, brand, postID, shared, uri }) => {
+		// 	// <InstagramPosts props={(brandURI, brand, postID, shared, uri)} />
+		// 	console.log(brandURI, )
+		// });
+	);
 
 	return (
 		<SafeAreaView>
@@ -78,122 +124,8 @@ const Working = () => {
 			</View>
 			<ScrollView>
 				<View style={styles.instaBl}>
-					
-					<View style={styles.insta}>
-						{/* this should be full background */}
-						<ImageBackground
-							style={styles.backg}
-							source={require("./images/Capture.png")}
-						>
-							<View style={styles.instlblBlk}>
-								<View style={styles.brandlogoBlk}>
-									<Image
-										style={styles.brandLogoInt}
-										source={require("./images/redcross.png")}
-									/>
-									<Text style={{ marginLeft: 7 }}>Brand</Text>
-								</View>
-								<TouchableOpacity>
-									<Image
-										style={styles.buttonImgS}
-										source={require("./images/arrow-up-right.png")}
-									/>
-								</TouchableOpacity>
-							</View>
-						</ImageBackground>
-					</View>
-					<View style={styles.insta}>
-						{/* this should be full background */}
-						<ImageBackground
-							style={styles.backg}
-							source={require("./images/Capture.png")}
-						>
-							<View style={styles.instlblBlk}>
-								<View style={styles.brandlogoBlk}>
-									<Image
-										style={styles.brandLogoInt}
-										source={require("./images/redcross.png")}
-									/>
-									<Text style={{ marginLeft: 7 }}>Brand</Text>
-								</View>
-								<TouchableOpacity>
-									<Image
-										style={styles.buttonImgS}
-										source={require("./images/arrow-up-right.png")}
-									/>
-								</TouchableOpacity>
-							</View>
-						</ImageBackground>
-					</View>
-					<View style={styles.insta}>
-						{/* this should be full background */}
-						<ImageBackground
-							style={styles.backg}
-							source={require("./images/Capture.png")}
-						>
-							<View style={styles.instlblBlk}>
-								<View style={styles.brandlogoBlk}>
-									<Image
-										style={styles.brandLogoInt}
-										source={require("./images/redcross.png")}
-									/>
-									<Text style={{ marginLeft: 7 }}>Brand</Text>
-								</View>
-								<TouchableOpacity>
-									<Image
-										style={styles.buttonImgS}
-										source={require("./images/arrow-up-right.png")}
-									/>
-								</TouchableOpacity>
-							</View>
-						</ImageBackground>
-					</View>
-					<View style={styles.insta}>
-						{/* this should be full background */}
-						<ImageBackground
-							style={styles.backg}
-							source={require("./images/Capture.png")}
-						>
-							<View style={styles.instlblBlk}>
-								<View style={styles.brandlogoBlk}>
-									<Image
-										style={styles.brandLogoInt}
-										source={require("./images/redcross.png")}
-									/>
-									<Text style={{ marginLeft: 7 }}>Brand</Text>
-								</View>
-								<TouchableOpacity>
-									<Image
-										style={styles.buttonImgS}
-										source={require("./images/arrow-up-right.png")}
-									/>
-								</TouchableOpacity>
-							</View>
-						</ImageBackground>
-					</View>
-					<View style={styles.insta}>
-						{/* this should be full background */}
-						<ImageBackground
-							style={styles.backg}
-							source={require("./images/Capture.png")}
-						>
-							<View style={styles.instlblBlk}>
-								<View style={styles.brandlogoBlk}>
-									<Image
-										style={styles.brandLogoInt}
-										source={require("./images/redcross.png")}
-									/>
-									<Text style={{ marginLeft: 7 }}>Brand</Text>
-								</View>
-								<TouchableOpacity>
-									<Image
-										style={styles.buttonImgS}
-										source={require("./images/arrow-up-right.png")}
-									/>
-								</TouchableOpacity>
-							</View>
-						</ImageBackground>
-					</View>
+					{/* {data.length === 0 ? <Text></Text> : combineDataDisplay} */}
+					{combineDataDisplay}
 				</View>
 
 				{/* twitter block */}
