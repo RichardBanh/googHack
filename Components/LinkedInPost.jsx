@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 export const FacebookPost = (props) => {
-	console.log(props.posturi);
 	return (
 		<View style={styles.twit}>
 			<View style={styles.iconblkspread}>
@@ -14,7 +13,7 @@ export const FacebookPost = (props) => {
 					<Text>{props.brand}</Text>
 					<Image style={styles.brandLogoInt} source={{ uri: props.brandURI }} />
 				</View>
-
+				{/* <Image source={props.posturi != null ? { uri: props.posturi } : null} /> */}
 				<TouchableOpacity>
 					<Image
 						style={styles.buttonImgS}
@@ -22,14 +21,6 @@ export const FacebookPost = (props) => {
 					/>
 				</TouchableOpacity>
 			</View>
-			{props.posturi != null ? (
-				<Image
-					style={{ width: 200, height: 200 }}
-					source={{ uri: props.posturi }}
-				/>
-			) : (
-				<Text></Text>
-			)}
 			<Text>{props.text}</Text>
 			<Text>{props.hashtag}</Text>
 		</View>
@@ -40,11 +31,10 @@ const styles = StyleSheet.create({
 	twit: {
 		width: "97%",
 		backgroundColor: "white",
-		paddingTop: 10,
+        paddingTop:10,
 		borderWidth: 2,
 		borderRadius: 25,
 		justifyContent: "center",
-		alignItems: "center",
 		paddingLeft: 12,
 		paddingRight: 12,
 	},
