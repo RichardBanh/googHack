@@ -4,9 +4,9 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 export const FacebookPost = (props) => {
 	console.log(props.posturi);
 	return (
-		<View style={styles.twit}>
+		<View style={styles.face}>
 			<View style={styles.iconblkspread}>
-				<View style={styles.iconblkTwit}>
+				<View style={styles.iconblkface}>
 					<Image
 						source={require("../Screens/images/facebook.png")}
 						style={styles.buttonImg}
@@ -37,7 +37,7 @@ export const FacebookPost = (props) => {
 };
 
 const styles = StyleSheet.create({
-	twit: {
+	face: {
 		width: "97%",
 		backgroundColor: "white",
 		paddingTop: 10,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 		marginRight: 10,
 	},
-	iconblkTwit: {
+	iconblkface: {
 		flexDirection: "row",
 		alignItems: "center",
 		width: "100%",

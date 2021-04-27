@@ -11,22 +11,27 @@ import {
 import DetailOpenModal from "./openDetailModal";
 import { useSelector, useDispatch } from "react-redux";
 
-import { INSTAPOST, BRAND, TWIT, FACE } from "../data/dumby.js";
+import { INSTAPOST, BRAND, TWIT, FACE, LINK } from "../data/dumby.js";
 
 import { InstagramPosts } from "../Components/InstagramPost";
 
 import { TwitterPosts } from "../Components/TwitterPost";
 
 import { FacebookPost } from "../Components/FacebookPost";
+
+import { LinkedInPost } from "../Components/LinkedInPost";
+
 const Working = () => {
 	const [currentSelected, setselected] = useState("all");
 	const [data, setData] = useState([]);
 	const [twitdata, setTData] = useState([]);
 	const [facedata, setFace] = useState([]);
+	const [linkdata, setLink] = useState([]);
 	//Modal must stay in workingScreen
 	const modalOpened = useSelector((state) => state.modalOpen.modalOpen);
 	const sendRedux = useDispatch();
 
+	//need to make this more repeatable
 	useEffect(() => {
 		async function faceArraywithbrandURI(arr1, arr2) {
 			for (i = 0; i < arr1.length; i++) {
@@ -55,6 +60,16 @@ const Working = () => {
 			}
 			setTData([...arr1]);
 		}
+		async function linkArraywithbrandURI(arr1, arr2) {
+			for (i = 0; i < arr1.length; i++) {
+				const brandk = arr1[i].brand;
+				const matchingobj = arr2.find(({ brand }) => brand === brandk);
+				const brandURI = matchingobj.branduri;
+				arr1[i].branduri = brandURI;
+			}
+			setLink([...arr1]);
+		}
+		linkArraywithbrandURI(LINK, BRAND);
 		faceArraywithbrandURI(FACE, BRAND);
 		instaArraywithbrandURI(INSTAPOST, BRAND);
 		twitArraywithbrandURI(TWIT, BRAND);
@@ -80,6 +95,15 @@ const Working = () => {
 			posturi: x.posturi,
 		};
 		return <FacebookPost {...props} key={Math.random()} />;
+	});
+	const combineDataDisplayLink = linkdata.map((x) => {
+		let props = {
+			brandURI: x.branduri,
+			text: x.text,
+			brand: x.brand,
+			posturi: x.posturi,
+		};
+		return <LinkedInPost {...props} key={Math.random()} />;
 	});
 
 	return (
@@ -144,35 +168,7 @@ const Working = () => {
 				<View style={styles.faceBl}>{combineDataDisplayFace}</View>
 				<View style={styles.linkBl}>
 					{/* single post */}
-					<View style={styles.link}>
-						<View style={styles.iconblkspread}>
-							<View style={styles.iconblkTwit}>
-								<Image
-									source={require("./images/linkedin.png")}
-									style={styles.buttonImg}
-								/>
-								{/* dynamic */}
-								<Text> Red Cross</Text>
-							</View>
-							<TouchableOpacity>
-								<Image
-									style={styles.buttonImgS}
-									source={require("./images/arrow-up-right.png")}
-								/>
-							</TouchableOpacity>
-						</View>
-						{/* dynamic */}
-						<Image
-							source={require("./images/generic/topicLinkedinPhoto.png")}
-							style={styles.img}
-						/>
-						<View>
-							<Text>
-								aksjdhfikajhsdkfjhakjsdhgfklajhsdkjghaosidfhgoiuhabsdkjhfkj
-							</Text>
-							<Text>#hashtag</Text>
-						</View>
-					</View>
+					{combineDataDisplayLink}
 				</View>
 			</ScrollView>
 		</SafeAreaView>

@@ -1,19 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-export const FacebookPost = (props) => {
+export const LinkedInPost = (props) => {
+	console.log(props.posturi);
 	return (
-		<View style={styles.twit}>
+		<View style={styles.link}>
 			<View style={styles.iconblkspread}>
-				<View style={styles.iconblkTwit}>
+				<View style={styles.iconblklink}>
 					<Image
-						source={require("../Screens/images/facebook.png")}
+						source={require("../Screens/images/linkedin.png")}
 						style={styles.buttonImg}
 					/>
 					<Text>{props.brand}</Text>
 					<Image style={styles.brandLogoInt} source={{ uri: props.brandURI }} />
 				</View>
-				{/* <Image source={props.posturi != null ? { uri: props.posturi } : null} /> */}
+
 				<TouchableOpacity>
 					<Image
 						style={styles.buttonImgS}
@@ -21,6 +22,14 @@ export const FacebookPost = (props) => {
 					/>
 				</TouchableOpacity>
 			</View>
+			{props.posturi != null ? (
+				<Image
+					style={{ width: 200, height: 200 }}
+					source={{ uri: props.posturi }}
+				/>
+			) : (
+				<Text></Text>
+			)}
 			<Text>{props.text}</Text>
 			<Text>{props.hashtag}</Text>
 		</View>
@@ -28,13 +37,14 @@ export const FacebookPost = (props) => {
 };
 
 const styles = StyleSheet.create({
-	twit: {
+	link: {
 		width: "97%",
 		backgroundColor: "white",
-        paddingTop:10,
+		paddingTop: 10,
 		borderWidth: 2,
 		borderRadius: 25,
 		justifyContent: "center",
+		alignItems: "center",
 		paddingLeft: 12,
 		paddingRight: 12,
 	},
@@ -44,7 +54,7 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 		marginRight: 10,
 	},
-	iconblkTwit: {
+	iconblklink: {
 		flexDirection: "row",
 		alignItems: "center",
 		width: "100%",
