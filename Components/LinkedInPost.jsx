@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 export const LinkedInPost = (props) => {
-	console.log(props.posturi);
 	return (
 		<View style={styles.link}>
 			<View style={styles.iconblkspread}>
@@ -11,7 +10,7 @@ export const LinkedInPost = (props) => {
 						source={require("../Screens/images/linkedin.png")}
 						style={styles.buttonImg}
 					/>
-					<Text>{props.brand}</Text>
+					<Text style={{ marginLeft: 7 }}>{props.brand}</Text>
 					<Image style={styles.brandLogoInt} source={{ uri: props.brandURI }} />
 				</View>
 
@@ -30,7 +29,7 @@ export const LinkedInPost = (props) => {
 			) : (
 				<Text></Text>
 			)}
-			<Text>{props.text}</Text>
+			<Text style={{ marginTop: 10 }}>{props.text}</Text>
 			<Text>{props.hashtag}</Text>
 		</View>
 	);
@@ -65,8 +64,9 @@ const styles = StyleSheet.create({
 		resizeMode: "contain",
 	},
 	buttonImg: {
-		height: 25,
-		width: 23,
+		height: 23,
+		width: 20,
+		marginRight: 10,
 		resizeMode: "contain",
 	},
 });

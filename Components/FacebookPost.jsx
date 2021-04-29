@@ -11,7 +11,7 @@ export const FacebookPost = (props) => {
 						source={require("../Screens/images/facebook.png")}
 						style={styles.buttonImg}
 					/>
-					<Text>{props.brand}</Text>
+					<Text style={{ marginLeft: 7 }}>{props.brand}</Text>
 					<Image style={styles.brandLogoInt} source={{ uri: props.brandURI }} />
 				</View>
 
@@ -30,7 +30,7 @@ export const FacebookPost = (props) => {
 			) : (
 				<Text></Text>
 			)}
-			<Text>{props.text}</Text>
+			<Text style={{ marginTop: 10 }}>{props.text}</Text>
 			<Text>{props.hashtag}</Text>
 		</View>
 	);

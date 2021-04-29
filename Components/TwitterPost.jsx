@@ -20,7 +20,7 @@ export const TwitterPosts = (props) => {
 					/>
 				</TouchableOpacity>
 			</View>
-			<Text>{props.text}</Text>
+			<Text style={{ marginTop: 10 }}>{props.text}</Text>
 			<Text>{props.hashtag}</Text>
 		</View>
 	);
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
 	buttonImg: {
 		height: 25,
 		width: 23,
+		marginRight: 10,
 		resizeMode: "contain",
 	},
 });
