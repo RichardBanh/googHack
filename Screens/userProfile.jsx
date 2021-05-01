@@ -6,6 +6,7 @@ import {
 	Image,
 	SafeAreaView,
 	TouchableOpacity,
+	ScrollView,
 } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -68,11 +69,13 @@ export const UserProfile = () => {
 						</TouchableOpacity>
 					</View>
 				</View>
+
 				<View
 					style={{
 						alignItems: "center",
 						flexDirection: "row",
-						marginTop: 60,
+						marginTop: 40,
+						marginBottom: 30,
 					}}
 				>
 					<Image
@@ -81,7 +84,8 @@ export const UserProfile = () => {
 					/>
 					<Text style={{ marginLeft: 90 }}>Name</Text>
 				</View>
-				<Text style={{ marginTop: 40, marginLeft: 13 }}>
+
+				<Text style={{ marginTop: 3, marginLeft: 13 }}>
 					Are these causes you care about up to date?
 				</Text>
 				<View
@@ -99,29 +103,105 @@ export const UserProfile = () => {
 					{/* section */}
 				</View>
 
-				<Text style={{ marginTop: 40, marginLeft: 13 }}>
+				<Text style={{ marginTop: 40, marginLeft: 13, marginBottom: 10 }}>
 					Are these Non-Profits up to date?
 				</Text>
-				<View>
-					{/* each non-profit */}
-					<View style={{}}>
-						<Image
-							style={{ width: 40, height: 40, borderRadius: 999 }}
-							source={require("./images/backgrounds/magicpat.jpg")}
-						/>
-						<Text>Non-Profit Name</Text>
+				<ScrollView>
+					<View style={styles.postBlk}>
+						{/* each non-profit */}
+						<View
+							style={{
+								height: 150,
+								width: "45%",
+								marginBottom: 7,
+								alignItems: "center",
+								borderWidth: 1,
+								paddingTop: 13,
+								borderRadius: 6,
+							}}
+						>
+							<Image
+								style={{ width: 60, height: 60, borderRadius: 999 }}
+								source={require("./images/backgrounds/magicpat.jpg")}
+							/>
+							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
+						</View>
+						<View
+							style={{
+								height: 150,
+								width: "45%",
+								marginBottom: 7,
+								alignItems: "center",
+								borderWidth: 1,
+								paddingTop: 13,
+								borderRadius: 6,
+							}}
+						>
+							<Image
+								style={{ width: 60, height: 60, borderRadius: 999 }}
+								source={require("./images/backgrounds/magicpat.jpg")}
+							/>
+							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
+						</View>
+						<View
+							style={{
+								height: 150,
+								width: "45%",
+								marginBottom: 7,
+								alignItems: "center",
+								borderWidth: 1,
+								paddingTop: 13,
+								borderRadius: 6,
+							}}
+						>
+							<Image
+								style={{ width: 60, height: 60, borderRadius: 999 }}
+								source={require("./images/backgrounds/magicpat.jpg")}
+							/>
+							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
+						</View>
+						<View
+							style={{
+								height: 150,
+								width: "45%",
+								marginBottom: 7,
+								alignItems: "center",
+								borderWidth: 1,
+								paddingTop: 13,
+								borderRadius: 6,
+							}}
+						>
+							<Image
+								style={{ width: 60, height: 60, borderRadius: 999 }}
+								source={require("./images/backgrounds/magicpat.jpg")}
+							/>
+							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
+						</View>
 					</View>
-				</View>
+				</ScrollView>
 				<View>
 					{/* PRICING PER POST */}
-					<View>
-						<Text>Is your pricing correct?</Text>
-						<Text>YOU HAVE 100,000 FOLLOWERS</Text>
+					<View
+						style={{
+							marginTop: 20,
+							paddingLeft: 10,
+							paddingRight: 10,
+							flexDirection: "row",
+							justifyContent: "space-between",
+							width: "100%",
+						}}
+					>
 						<View>
-							<Text>$2.00</Text>
-							<Text> / POST</Text>
+							<Text>Is your pricing correct?</Text>
+							<Text>YOU HAVE 100,000 FOLLOWERS</Text>
+							<View>
+								<Text>$2.00 / POST</Text>
+							</View>
 						</View>
-						
+						<Image
+							style={{ width: 20, height: 20 }}
+							source={require("./images/arrow-up-right.png")}
+						/>
 					</View>
 				</View>
 			</View>
@@ -130,6 +210,12 @@ export const UserProfile = () => {
 };
 const styles = StyleSheet.create({
 	// section
+	postBlk: {
+		marginLeft: 14,
+		flexDirection: "row",
+		justifyContent: "space-evenly",
+		flexWrap: "wrap",
+	},
 	bubble: {
 		marginTop: 10,
 		borderWidth: 1,
