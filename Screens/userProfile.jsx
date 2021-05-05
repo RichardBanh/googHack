@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import { ScrollCause } from "../Components/userProfileElements/ScrollCauseMap";
+import {NonProfitIcon} from "../Components/userProfileElements/NonProfitIcon"
 
 export const UserProfile = () => {
 	const [currentSelected, setselected] = useState("all");
@@ -149,98 +150,8 @@ export const UserProfile = () => {
 				<ScrollView>
 					<View style={styles.postBlk}>
 						{/* each non-profit */}
-						<View
-							style={{
-								height: 150,
-								width: "45%",
-								marginBottom: 7,
-								alignItems: "center",
-								borderWidth: 1,
-								paddingTop: 13,
-								borderRadius: 6,
-							}}
-						>
-							<Image
-								style={{ width: 60, height: 60, borderRadius: 999 }}
-								source={require("./images/backgrounds/magicpat.jpg")}
-							/>
-							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
-						</View>
-						<View
-							style={{
-								height: 150,
-								width: "45%",
-								marginBottom: 7,
-								alignItems: "center",
-								borderWidth: 1,
-								paddingTop: 13,
-								borderRadius: 6,
-							}}
-						>
-							<Image
-								style={{ width: 60, height: 60, borderRadius: 999 }}
-								source={require("./images/backgrounds/magicpat.jpg")}
-							/>
-							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
-						</View>
-						<View
-							style={{
-								height: 150,
-								width: "45%",
-								marginBottom: 7,
-								alignItems: "center",
-								borderWidth: 1,
-								paddingTop: 13,
-								borderRadius: 6,
-							}}
-						>
-							<Image
-								style={{ width: 60, height: 60, borderRadius: 999 }}
-								source={require("./images/backgrounds/magicpat.jpg")}
-							/>
-							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
-						</View>
-						<View
-							style={{
-								height: 150,
-								width: "45%",
-								marginBottom: 7,
-								alignItems: "center",
-								borderWidth: 1,
-								paddingTop: 13,
-								borderRadius: 6,
-							}}
-						>
-							<Image
-								style={{ width: 60, height: 60, borderRadius: 999 }}
-								source={require("./images/backgrounds/magicpat.jpg")}
-							/>
-							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
-							<TouchableOpacity>
-								<View
-									style={{
-										width: 20,
-										height: 20,
-										alignContent: "center",
-										justifyContent: "center",
-										borderRadius: 999,
-										borderWidth: 1,
-										marginTop: 10,
-										backgroundColor: "rgba(0,0,0,0.05)",
-									}}
-								>
-									<Text
-										style={{
-											fontSize: 15,
-
-											textAlign: "center",
-										}}
-									>
-										?
-									</Text>
-								</View>
-							</TouchableOpacity>
-						</View>
+						
+						<NonProfitIcon/>
 					</View>
 				</ScrollView>
 			</View>
@@ -248,19 +159,6 @@ export const UserProfile = () => {
 	);
 };
 const styles = StyleSheet.create({
-	// section
-	postBlk: {
-		marginLeft: 14,
-		flexDirection: "row",
-		justifyContent: "space-evenly",
-		flexWrap: "wrap",
-	},
-	bubble: {
-		marginTop: 10,
-		borderWidth: 1,
-		padding: 10,
-		borderRadius: 999,
-	},
 	// section
 	mediaButtonBlock: {
 		width: 200,
