@@ -8,7 +8,6 @@ import {
 	TouchableOpacity,
 	ScrollView,
 } from "react-native";
-import { useSelector } from "react-redux";
 
 export const UserProfile = () => {
 	const [currentSelected, setselected] = useState("all");
@@ -85,9 +84,36 @@ export const UserProfile = () => {
 					<Text style={{ marginLeft: 90 }}>Name</Text>
 				</View>
 
-				<Text style={{ marginTop: 3, marginLeft: 13 }}>
-					Are these causes you care about up to date?
-				</Text>
+				{/* PRICING PER POST */}
+				<View
+					style={{
+						marginBottom: 10,
+						marginLeft: "4%",
+						marginRight: "1%",
+						flexDirection: "row",
+						justifyContent: "space-between",
+					}}
+				>
+					<View>
+						<Text>Is your pricing correct?</Text>
+						<Text>YOU HAVE 100,000 FOLLOWERS</Text>
+						<Text>$2.00 / POST</Text>
+					</View>
+					<Image
+						style={{ width: 17, height: 17 }}
+						source={require("./images/arrow-up-right.png")}
+					/>
+				</View>
+
+				<View style={{ flexDirection: "row" }}>
+					<Text style={{ marginTop: 3, marginLeft: 13 }}>
+						Are these causes you care about up to date?
+					</Text>
+					<Image
+						style={{ marginLeft: 9, width: 17, height: 17 }}
+						source={require("./images/arrow-up-right.png")}
+					/>
+				</View>
 				<View
 					style={{
 						marginTop: "5%",
@@ -98,14 +124,28 @@ export const UserProfile = () => {
 				>
 					{/* section */}
 					<View style={styles.bubble}>
-						<Text>Whoop</Text>
+						<ScrollView>
+							<Text>Whoop</Text>
+						</ScrollView>
 					</View>
 					{/* section */}
 				</View>
-
-				<Text style={{ marginTop: 40, marginLeft: 13, marginBottom: 10 }}>
-					Are these Non-Profits up to date?
-				</Text>
+				<View
+					style={{
+						flexDirection: "row",
+						marginTop: 40,
+						marginRight: 10,
+						justifyContent: "space-between",
+					}}
+				>
+					<Text style={{ marginLeft: 13, marginBottom: 10 }}>
+						Are these Non-Profits up to date?
+					</Text>
+					<Image
+						style={{ width: 17, height: 17 }}
+						source={require("./images/arrow-up-right.png")}
+					/>
+				</View>
 				<ScrollView>
 					<View style={styles.postBlk}>
 						{/* each non-profit */}
@@ -176,34 +216,33 @@ export const UserProfile = () => {
 								source={require("./images/backgrounds/magicpat.jpg")}
 							/>
 							<Text style={{ marginTop: 10 }}>Non-Profit Name</Text>
+							<TouchableOpacity>
+								<View
+									style={{
+										width: 20,
+										height: 20,
+										alignContent: "center",
+										justifyContent: "center",
+										borderRadius: 999,
+										borderWidth: 1,
+										marginTop: 10,
+										backgroundColor: "rgba(0,0,0,0.05)",
+									}}
+								>
+									<Text
+										style={{
+											fontSize: 15,
+
+											textAlign: "center",
+										}}
+									>
+										?
+									</Text>
+								</View>
+							</TouchableOpacity>
 						</View>
 					</View>
 				</ScrollView>
-				<View>
-					{/* PRICING PER POST */}
-					<View
-						style={{
-							marginTop: 20,
-							paddingLeft: 10,
-							paddingRight: 10,
-							flexDirection: "row",
-							justifyContent: "space-between",
-							width: "100%",
-						}}
-					>
-						<View>
-							<Text>Is your pricing correct?</Text>
-							<Text>YOU HAVE 100,000 FOLLOWERS</Text>
-							<View>
-								<Text>$2.00 / POST</Text>
-							</View>
-						</View>
-						<Image
-							style={{ width: 20, height: 20 }}
-							source={require("./images/arrow-up-right.png")}
-						/>
-					</View>
-				</View>
 			</View>
 		</SafeAreaView>
 	);

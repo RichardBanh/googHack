@@ -58,3 +58,5 @@ export const LINK = [
 		shared: 10000,
 	},
 ];
+
+export const CAUSE = [{ cause: "Hunger" }];
