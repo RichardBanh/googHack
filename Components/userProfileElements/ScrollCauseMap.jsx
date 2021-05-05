@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	StyleSheet,
 	Text,
@@ -8,12 +8,31 @@ import {
 	TouchableOpacity,
 	ScrollView,
 } from "react-native";
-import { useSelector } from "react-redux";
-import SingleCause from "./SingleCause";
+
+import { CAUSE } from "../../data/dumby.js";
 
 export const ScrollCause = () => {
-	const singleCause = causeData.map((x) => {
-		<SingleCause cause={x.cause} />;
-	});
-	return <ScrollView>{singleCause}</ScrollView>;
+	const [causeData, setCause] = useState([]);
+	useEffect(() => {
+		setCause(CAUSE);
+	}, []);
+
+	return (
+		<ScrollView>
+			{causeData.map((x) => (
+				<View style={styles.bubble}>
+					<Text>{x.cause}</Text>
+				</View>
+			))}
+		</ScrollView>
+	);
 };
+
+const styles = StyleSheet.create({
+	bubble: {
+		marginTop: 10,
+		borderWidth: 1,
+		padding: 10,
+		borderRadius: 999,
+	},
+});

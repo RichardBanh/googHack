@@ -59,4 +59,12 @@ export const LINK = [
 	},
 ];
 
-export const CAUSE = [{ cause: "Hunger" }];
+
+//need to be from user
+
+export const CAUSE = [
+	{ cause: "Hunger" },
+	{ cause: "Religious" },
+	{ cause: "Scientific" },
+	{ cause: "Mental Health" },
+];

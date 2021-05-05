@@ -9,6 +9,8 @@ import {
 	ScrollView,
 } from "react-native";
 
+import { ScrollCause } from "../Components/userProfileElements/ScrollCauseMap";
+
 export const UserProfile = () => {
 	const [currentSelected, setselected] = useState("all");
 	return (
@@ -123,11 +125,9 @@ export const UserProfile = () => {
 					}}
 				>
 					{/* section */}
-					<View style={styles.bubble}>
-						<ScrollView>
-							<Text>Whoop</Text>
-						</ScrollView>
-					</View>
+
+					<ScrollCause />
+
 					{/* section */}
 				</View>
 				<View
