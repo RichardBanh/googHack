@@ -12,6 +12,7 @@ import conditonalLogIn from "./Screens/conditionalLoginScreen";
 import { userPass, loggedin } from "./Redux/reducers/authReduc";
 import { modalOpen } from "./Redux/reducers/modalOpenReduc";
 import { post } from "./Redux/reducers/postsCommitedReduc";
+import { price, priceModalOpen } from "./Redux/reducers/priceModalReduc";
 
 const Drawer = createDrawerNavigator();
 
@@ -28,6 +29,13 @@ export default function App() {
 }
 
 // list reducers here
-const rootReducer = combineReducers({ userPass, loggedin, post, modalOpen });
+const rootReducer = combineReducers({
+	userPass,
+	loggedin,
+	post,
+	modalOpen,
+	price,
+	priceModalOpen,
+});
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

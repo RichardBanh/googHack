@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-	StyleSheet,
-	Text,
-	View,
-	Image,
-	SafeAreaView,
-	TouchableOpacity,
-	ScrollView,
-} from "react-native";
-
-//dumbiedata
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { FACE } from "../../data/dumby.js";
+
+
 export const NonProfitIcon = () => {
 	const [dataProf, setProf] = useState([]);
 	useEffect(() => {
@@ -51,7 +43,6 @@ export const NonProfitIcon = () => {
 							<Text
 								style={{
 									fontSize: 15,
-
 									textAlign: "center",
 								}}
 							>

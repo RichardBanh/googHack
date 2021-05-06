@@ -10,12 +10,16 @@ import {
 } from "react-native";
 
 import { ScrollCause } from "../Components/userProfileElements/ScrollCauseMap";
-import {NonProfitIcon} from "../Components/userProfileElements/NonProfitIcon"
+import { NonProfitIcon } from "../Components/userProfileElements/NonProfitIcon";
+import { useSelector } from "react-redux";
+import { PriceModal } from "../Components/userProfileElements/PriceModal";
 
 export const UserProfile = () => {
+	const modalPriceOpen = useSelector((state) => state.priceModalOpen.modalOpen);
 	const [currentSelected, setselected] = useState("all");
 	return (
 		<SafeAreaView>
+			{modalPriceOpen ? <PriceModal /> : <Text></Text>}
 			<View
 				style={{
 					margin: 30,
@@ -142,16 +146,24 @@ export const UserProfile = () => {
 					<Text style={{ marginLeft: 13, marginBottom: 10 }}>
 						Are these Non-Profits up to date?
 					</Text>
-					<Image
-						style={{ width: 17, height: 17 }}
-						source={require("./images/arrow-up-right.png")}
-					/>
+					<TouchableOpacity
+						onPress={() =>
+							sendRedux({
+								type: "USER/PRICE/OPEN",
+							})
+						}
+					>
+						<Image
+							style={{ width: 17, height: 17 }}
+							source={require("./images/arrow-up-right.png")}
+						/>
+					</TouchableOpacity>
 				</View>
 				<ScrollView>
 					<View style={styles.postBlk}>
 						{/* each non-profit */}
-						
-						<NonProfitIcon/>
+
+						<NonProfitIcon />
 					</View>
 				</ScrollView>
 			</View>
