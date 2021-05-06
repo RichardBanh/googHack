@@ -10,8 +10,12 @@ export const priceModalOpen = (state = initialStateMod, action) => {
 	switch (action.type) {
 		case "USER/PRICE/OPEN":
 			return {
-				modalOpen: !state.pricemodal,
+				modalOpen: true,
 			};
+			case "USER/PRICE/CLOSE":
+				return {
+					modalOpen: false,
+				};
 		default:
 			return state;
 	}

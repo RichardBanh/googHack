@@ -59,7 +59,6 @@ export const LINK = [
 	},
 ];
 
-
 //need to be from user
 
 export const CAUSE = [
@@ -68,3 +67,5 @@ export const CAUSE = [
 	{ cause: "Scientific" },
 	{ cause: "Mental Health" },
 ];
+
+export const SELECTEDCAUSE = [{ cause: "Hunger" }, { cause: "Scientific" }];

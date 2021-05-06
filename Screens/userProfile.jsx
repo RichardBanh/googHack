@@ -11,12 +11,14 @@ import {
 
 import { ScrollCause } from "../Components/userProfileElements/ScrollCauseMap";
 import { NonProfitIcon } from "../Components/userProfileElements/NonProfitIcon";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { PriceModal } from "../Components/userProfileElements/PriceModal";
-
+import { MediaBar } from "../Components/MediaBar";
 export const UserProfile = () => {
 	const modalPriceOpen = useSelector((state) => state.priceModalOpen.modalOpen);
-	const [currentSelected, setselected] = useState("all");
+	const price = useSelector((state) => state.price.price);
+
+	const sendRedux = useDispatch();
 	return (
 		<SafeAreaView>
 			{modalPriceOpen ? <PriceModal /> : <Text></Text>}
@@ -25,57 +27,7 @@ export const UserProfile = () => {
 					margin: 30,
 				}}
 			>
-				<View style={{ width: "100%", alignItems: "flex-end" }}>
-					<View style={styles.mediaButtonBlock}>
-						{/* need to move this to a own component and map */}
-						<TouchableOpacity onPress={() => setselected("all")}>
-							<Image
-								style={[
-									styles.buttonImg,
-									{ opacity: currentSelected === "all" ? 0.1 : 1 },
-								]}
-								source={require("./images/circle.png")}
-							/>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={() => setselected("twit")}>
-							<Image
-								style={[
-									styles.buttonImg,
-									{ opacity: currentSelected === "twit" ? 0.1 : 1 },
-								]}
-								source={require("./images/twitter.png")}
-							/>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={() => setselected("insta")}>
-							<Image
-								style={[
-									styles.buttonImg,
-									{ opacity: currentSelected === "insta" ? 0.1 : 1 },
-								]}
-								source={require("./images/instagram.png")}
-							/>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={() => setselected("face")}>
-							<Image
-								style={[
-									styles.buttonImg,
-									{ opacity: currentSelected === "face" ? 0.1 : 1 },
-								]}
-								source={require("./images/facebook.png")}
-							/>
-						</TouchableOpacity>
-						<TouchableOpacity onPress={() => setselected("lin")}>
-							<Image
-								style={[
-									styles.buttonImg,
-									{ opacity: currentSelected === "lin" ? 0.1 : 1 },
-								]}
-								source={require("./images/linkedin.png")}
-							/>
-						</TouchableOpacity>
-					</View>
-				</View>
-
+				<MediaBar />
 				<View
 					style={{
 						alignItems: "center",
@@ -104,12 +56,20 @@ export const UserProfile = () => {
 					<View>
 						<Text>Is your pricing correct?</Text>
 						<Text>YOU HAVE 100,000 FOLLOWERS</Text>
-						<Text>$2.00 / POST</Text>
+						<Text>$ {price} / POST</Text>
 					</View>
-					<Image
-						style={{ width: 17, height: 17 }}
-						source={require("./images/arrow-up-right.png")}
-					/>
+					<TouchableOpacity
+						onPress={() =>
+							sendRedux({
+								type: "USER/PRICE/OPEN",
+							})
+						}
+					>
+						<Image
+							style={{ width: 17, height: 17 }}
+							source={require("./images/arrow-up-right.png")}
+						/>
+					</TouchableOpacity>
 				</View>
 
 				<View style={{ flexDirection: "row" }}>
@@ -146,13 +106,7 @@ export const UserProfile = () => {
 					<Text style={{ marginLeft: 13, marginBottom: 10 }}>
 						Are these Non-Profits up to date?
 					</Text>
-					<TouchableOpacity
-						onPress={() =>
-							sendRedux({
-								type: "USER/PRICE/OPEN",
-							})
-						}
-					>
+					<TouchableOpacity>
 						<Image
 							style={{ width: 17, height: 17 }}
 							source={require("./images/arrow-up-right.png")}
@@ -161,8 +115,6 @@ export const UserProfile = () => {
 				</View>
 				<ScrollView>
 					<View style={styles.postBlk}>
-						{/* each non-profit */}
-
 						<NonProfitIcon />
 					</View>
 				</ScrollView>
